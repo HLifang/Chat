@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {ChatManager,TokenProvider } from '@pusher/chatkit-client';
 
 import RoomList from './components/RoomList';
-import Message from './components/Message';
 import MessageList from './components/MessageList';
 import './App.css';
 
@@ -44,7 +43,6 @@ class App extends Component {
     return (
       <div className="app">
         <RoomList></RoomList>
-        <Message></Message>
         <MessageList messages={this.state.messages}></MessageList>
       </div>
     );

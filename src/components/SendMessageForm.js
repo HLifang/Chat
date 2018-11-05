@@ -28,7 +28,7 @@ class SendMessageForm extends Component{
                 <input 
                     onChange={this.handleChange} 
                     value={this.state.message}
-                    placeholder="Send Message Form" 
+                    placeholder="Type your message and hit ENTER" 
                     type="text"/>
             </form>
         )

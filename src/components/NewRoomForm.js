@@ -33,6 +33,7 @@ class NewRoomForm extends Component{
                         onChange={this.handleChange} 
                         placeholder="Create a room" required
                         type="text"/>
+                    <button id="create-room-btn" type="submit">+</button>
                 </form>
             </div>
 

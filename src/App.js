@@ -17,7 +17,8 @@ class App extends Component {
       roomId:null,
       messages:[],
       joinableRooms:[],
-      joinedRooms:[]
+      joinedRooms:[],
+      userIds:[]
     }
     this.sendMessage=this.sendMessage.bind(this);
     this.subscribeToRoom=this.subscribeToRoom.bind(this);
@@ -58,6 +59,7 @@ class App extends Component {
         roomId:room.id
       })
       this.getRooms();
+      this.getUserIds();
     }).catch(err=>console.log('error on subscribing to room: ',err));
   }
 
@@ -70,6 +72,12 @@ class App extends Component {
     }).catch(err => console.log('error on joinableRooms:', err));
   }
 
+  getUserIds(){
+    const currentRoom = this.state.joinedRooms.filter((joinedRoom)=>joinedRoom.id === this.state.roomId)[0];
+    this.setState({
+      userIds:currentRoom.userIds
+    });
+  }
   sendMessage(text){
     this.currentUser.sendMessage({
       text,
@@ -78,7 +86,6 @@ class App extends Component {
   }
 
   createRoom(name){
-    console.log('roomName:',name);
     this.currentUser.createRoom({
        name
     }).then(room=>this.subscribeToRoom(room.id))
@@ -88,9 +95,12 @@ class App extends Component {
   render() {
     return (
       <div className="app">
-        <RoomList roomId={this.state.roomId}
+        <RoomList 
+          roomId={this.state.roomId}
+          userIds={this.state.userIds}
           subscribeToRoom={this.subscribeToRoom}
-          rooms={[...this.state.joinableRooms,...this.state.joinedRooms]}></RoomList>
+          rooms={[...this.state.joinableRooms, ...this.state.joinedRooms]}></RoomList>
+        
         <MessageList 
           roomId={this.state.roomId}
           messages={this.state.messages}></MessageList>

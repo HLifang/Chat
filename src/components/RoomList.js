@@ -1,8 +1,8 @@
 import React,{ Component } from 'react';
+import OnLineUsers from './OnLineUsers';
 
 class RoomList extends Component {
     render(){
-        //console.log('room list:',this.props.rooms);
         const orderedRooms = [...this.props.rooms].sort((a,b)=>a.id - b.id);
         return (
             <div className="rooms-list">
@@ -10,9 +10,13 @@ class RoomList extends Component {
                 <ul>
                     {orderedRooms.map(room=>{
                         const active = this.props.roomId === room.id?"active":"";
+    
                         return (
                             <li key={room.id} className={"room "+active}>
-                                <a onClick={()=>this.props.subscribeToRoom(room.id)} href="#">{room.name}</a>
+                                <span onClick={()=>this.props.subscribeToRoom(room.id)}>{room.name}</span>
+                                {!!active &&
+                                    <OnLineUsers userIds={this.props.userIds}></OnLineUsers>
+                                }
                             </li>
                         )
                     })}

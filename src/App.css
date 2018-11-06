@@ -4,6 +4,7 @@
     --main-text-color: #3e5869;
     --secondary-text-color: #b0c7d6;
     --send-message-form: #F5F5F5;
+    --primary-font-size:14px;
 }
 
 html, body {
@@ -73,14 +74,24 @@ html, body {
     color: var(--secondary-color);
 }
 
-.rooms-list .room a {
+.rooms-list .room span {
+    display: block;
+    background:url('./assets/user-group.svg') no-repeat;
+    padding-left: 24px;
+    text-align: left;
     color: var(--secondary-text-color);
     font-weight: 600;
-    text-decoration: none;
-    
+    font-size: var(--primary-font-size);
+    cursor: pointer;
  }
 
-.rooms-list .room.active a {
+.rooms-list .room.active span {
+    color: var(--secondary-color);
+    background-image: url('./assets/user-group2.svg');
+}
+.rooms-list .users-list{
+    list-style: none;
+    padding-left: 25px;
     color: var(--secondary-color);
 }
 
@@ -111,6 +122,7 @@ html, body {
 .new-room-form input::placeholder {
     color: var(--main-text-color);
     font-weight: 200;
+    font-size: var(--primary-font-size);
 }
 
 .new-room-form input:focus {
@@ -123,6 +135,7 @@ html, body {
 
 .new-room-form button {
     border: 0;
+    font-size: var(--primary-font-size);
 }
 
 .message {
@@ -173,7 +186,7 @@ html, body {
     border-style: none;
     background: var(--send-message-form);
     font-weight: 200;
-
+    font-size: var(--primary-font-size);
 }
 
 .send-message-form input:focus {
